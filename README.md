@@ -22,3 +22,9 @@ In order to run it, you need to download the files and run in the folder the fol
 $ make
 $ ./facteurPremier the_number_you_want_to_decomp
 '''
+
+# Sudoku maker
+
+In the folder "sudokuMaker", you will discover a code that solve a given sudoku or make a new one. This code will help me to create an MacOS sudoku app by doing the major logic parts.
+
+> Ongoing
