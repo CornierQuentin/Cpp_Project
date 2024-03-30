@@ -28,3 +28,10 @@ $ ./facteurPremier the_number_you_want_to_decomp
 In the folder "sudokuMaker", you will discover a code that solve a given sudoku or make a new one. This code will help me to create an MacOS sudoku app by doing the major logic parts.
 
 > Ongoing
+
+# RootMe and Project Euler
+
+I can't give the codes which help me to solve the problems of this platform, in order to respect the policy. However, you can discover my profile with the links below.
+
+[My RootMe profile](https://www.root-me.org/Quentin-Cornier)
+![My Project Euler Achievments](https://projecteuler.net/profile/SumCry.png "My Project Euler Achievments")
