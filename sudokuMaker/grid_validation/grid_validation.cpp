@@ -1,7 +1,5 @@
 #include "grid_validation.h"
 
-const int SUM_TO_9 = 9 * 10 / 2;
-
 bool grid_validation::is_valid(std::array<int, 81> grid) {
 
     for (int k = 0; k < 9; k++) {  // We test each row, column and square
@@ -23,19 +21,25 @@ int grid_validation::get_index(int x, int y) {
 bool grid_validation::is_row_valid(std::array<int, 81> grid, int row_index) {
 
     std::array<int, 9> row;  // creating an array to store only the necessary number
+
     int row_starting_index = get_index(0, row_index);
 
     for (int k = 0; k < 9; k++) {  // Stores the row in an array
         row[k] = row_starting_index + k;
     }
 
-    int sum_of_row {0};
+    // We assume that the numbers in the array are between 1 and 9
+    std::array<int, 10> occurence {0}; // array to store the number of occurence of each number
 
-    for (int i = 0; i < 9; i++) {  // Sums all the number of the array
-        sum_of_row += row[i];
+    for (int i = 0; i < 9; i++) {  // for each number in the row we add its occurence
+        if (occurence[row[i]] < 1) {  // if it's 0 we increment it
+            occurence[row[i]]++;
+        } else {  // if it's above or equal to 1, it doesn't respect the sudoku rule, becaus there are two occurence of the same number
+            return false;
+        }
     }
 
-    return sum_of_row == SUM_TO_9;  // the sum must be equal to 1 + 2 + ... + 9 in order to be correct
+    return true;  // if it goes through all the test above, there is only one occurence of each number and the row is valid
 }
 
 bool grid_validation::is_column_valid(std::array<int, 81> grid, int column_index) {
@@ -47,13 +51,18 @@ bool grid_validation::is_column_valid(std::array<int, 81> grid, int column_index
         column[k] = get_index(column_index, k);
     }
 
-    int sum_of_column {0};
+    // We assume that the numbers in the array are between 1 and 9
+    std::array<int, 10> occurence {0}; // array to store the number of occurence of each number
 
-    for (int i = 0; i < 9; i++) {  // Sums all the number of the array
-        sum_of_column += column[i];
+    for (int i = 0; i < 9; i++) {  // for each number in the column we add its occurence
+        if (occurence[column[i]] < 1) {  // if it's 0 we increment it
+            occurence[column[i]]++;
+        } else {  // if it's above or equal to 1, it doesn't respect the sudoku rule, becaus there are two occurence of the same number
+            return false;
+        }
     }
 
-    return sum_of_column == SUM_TO_9;  // the sum must be equal to 1 + 2 + ... + 9 in order to be correct
+    return true;  // if it goes through all the test above, there is only one occurence of each number and the column is valid
 }
 
 bool grid_validation::is_square_valid(std::array<int, 81> grid, int square_index) {
@@ -82,11 +91,16 @@ bool grid_validation::is_square_valid(std::array<int, 81> grid, int square_index
         6 7 8
     */
 
-   int sum_of_square {0};
+   // We assume that the numbers in the array are between 1 and 9
+   std::array<int, 10> occurence {0}; // array to store the number of occurence of each number
 
-    for (int i = 0; i < 9; i++) {  // Sums all the number of the array
-        sum_of_square += square[i];
+    for (int i = 0; i < 9; i++) {  // for each number in the square we add its occurence
+        if (occurence[square[i]] < 1) {  // if it's 0 we increment it
+            occurence[square[i]]++;
+        } else {  // if it's above or equal to 1, it doesn't respect the sudoku rule, becaus there are two occurence of the same number
+            return false;
+        }
     }
 
-    return sum_of_square == SUM_TO_9;  // the sum must be equal to 1 + 2 + ... + 9 in order to be correct
+    return true;  // if it goes through all the test above, there is only one occurence of each number and the square is valid
 }
