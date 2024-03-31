@@ -1,4 +1,5 @@
 #include "grid_validation.h"
+#include <iostream>
 
 bool grid_validation::is_valid(std::array<int, 81> grid) {
 
@@ -25,11 +26,11 @@ bool grid_validation::is_row_valid(std::array<int, 81> grid, int row_index) {
     int row_starting_index = get_index(0, row_index);
 
     for (int k = 0; k < 9; k++) {  // Stores the row in an array
-        row[k] = row_starting_index + k;
+        row[k] = grid[row_starting_index + k];
     }
 
     // We assume that the numbers in the array are between 1 and 9
-    std::array<int, 10> occurence {0}; // array to store the number of occurence of each number
+    std::array<int, 10> occurence = {0}; // array to store the number of occurence of each number
 
     for (int i = 0; i < 9; i++) {  // for each number in the row we add its occurence
         if (occurence[row[i]] < 1) {  // if it's 0 we increment it
@@ -48,11 +49,11 @@ bool grid_validation::is_column_valid(std::array<int, 81> grid, int column_index
     int column_starting_index = get_index(column_index, 0);
 
     for (int k = 0; k < 9; k++) {  // Stores the column in an array
-        column[k] = get_index(column_index, k);
+        column[k] = grid[get_index(column_index, k)];
     }
 
     // We assume that the numbers in the array are between 1 and 9
-    std::array<int, 10> occurence {0}; // array to store the number of occurence of each number
+    std::array<int, 10> occurence = {0}; // array to store the number of occurence of each number
 
     for (int i = 0; i < 9; i++) {  // for each number in the column we add its occurence
         if (occurence[column[i]] < 1) {  // if it's 0 we increment it
@@ -80,7 +81,7 @@ bool grid_validation::is_square_valid(std::array<int, 81> grid, int square_index
 
     for (int i = 0; i < 3; i++) {  // stores the square in an array
         for (int j = 0; j < 3; j++) {
-            square[i * 3 + j] = get_index(square_starting_x + j, square_starting_y + i);
+            square[i * 3 + j] = grid[get_index(square_starting_x + j, square_starting_y + i)];
         }
     }
 
@@ -92,7 +93,7 @@ bool grid_validation::is_square_valid(std::array<int, 81> grid, int square_index
     */
 
    // We assume that the numbers in the array are between 1 and 9
-   std::array<int, 10> occurence {0}; // array to store the number of occurence of each number
+   std::array<int, 10> occurence = {0}; // array to store the number of occurence of each number
 
     for (int i = 0; i < 9; i++) {  // for each number in the square we add its occurence
         if (occurence[square[i]] < 1) {  // if it's 0 we increment it
